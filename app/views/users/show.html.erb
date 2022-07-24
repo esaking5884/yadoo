@@ -1,0 +1,57 @@
+<h1>アカウントメニュー</h1>
+<div><img class="user_image" src="<%= "/user_images/#{@user.image_name}" %>"></div>
+<ul class ="yado_menu">
+    <li>宿を探す</li>
+    <li>宿を提供する</li>
+</ul>
+<h2>アカウント情報</h2>
+<table>
+    <tr>
+        <th>
+            <%= "氏名" %>
+        </th>
+        <td>
+            <%= @user.name %>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <%= "アカウント名" %>
+        </th>
+        <td>
+            <%= @user.account_name %>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <%= "メールアドレス" %>
+        </th>
+        <td>
+            <%= @user.email %>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <%= "電話番号" %>
+        </th>
+        <td>
+            <%= @user.phone_number %>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <%= "自己紹介" %>
+        </th>
+        <td>
+            <%= @user.introduction %>
+        </td>
+    </tr>
+</table>
+<div>
+    <div>
+        <%= link_to "アカウント情報を編集", edit_user_path %>
+    <div>
+    <div>
+        <%= link_to "アカウント削除", user_path, method: :delete, data: {confirm: "本当に削除しますか？"} %>
+    </div>
+</div>

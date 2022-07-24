@@ -1,0 +1,14 @@
+<h1>ユーザー一覧</h1>
+<table>
+    <tr>
+        <th>アカウント名</th>
+    </tr>
+    <% @users.each do |user| %>
+        <tr>
+            <td><%= link_to user.account_name, "users/#{user.id}", class: "user_info_link" %></td>
+        </tr>
+    <% end %>
+</table>
+<p>
+    <%= link_to "ユーザー登録", :new_user %>
+</p>

@@ -1,0 +1,39 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+.header{
+    background-color: grey;
+}
+
+.logo{
+    font-size: 40px;
+    color:#FFF;
+}
+
+.header_links{
+    float: right;
+    display: flex;
+}
+
+.header_link{
+    float: left;
+    margin-left: 10px;
+    color:#FFF;
+}
+
+.user_image{
+    width:100px;
+    height:100px;
+    border-radius: 50%;
+    border: double;
+}
