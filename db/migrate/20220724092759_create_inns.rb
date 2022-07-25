@@ -1,4 +1,4 @@
-class Inn < ActiveRecord::Migration[6.1]
+class CreateInns < ActiveRecord::Migration[6.1]
   def change
     create_table :inns do |t|
       t.string :owner

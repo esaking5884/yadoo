@@ -1,0 +1,29 @@
+<h1><%= @inn.name %></h1>
+<div class="inn_image_container">
+  <img class="inn_image" src="<%= "/inn_images/#{@inn.image_name}" %>">
+</div>
+<table>
+  <tr>
+    <th>詳細</th>
+    <td><%= @inn.introduction %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @inn.address %></td>
+  </tr>
+  <tr>
+    <th>料金</th>
+    <td><%= @inn.price %></td>
+  </tr>
+  <tr>
+    <th>貸主</th>
+    <td><%= @inn.owner %></td>
+  </tr>
+</table>
+<ul>
+  <% if correct_owner?(@inn) %>
+    <li><%= link_to "宿情報編集", edit_inn_path %></li>
+    <li><%= link_to "宿削除", inn_path, {method: :delete, data:{confirm: "削除しますか？"}} %></li>
+  <% end %>
+  <li><%= link_to "宿検索に戻る", inns_path %></li>
+</ul>

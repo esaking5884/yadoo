@@ -1,2 +1,17 @@
-<h1>Inns#index</h1>
-<p>Find me in app/views/inns/index.html.erb</p>
+<h1>宿検索</h1>
+<div>
+  <table>
+    <% @inns.each do |inn| %>
+      <tr>
+        <th class="inn_th"><%= link_to "#{inn.name}", "/inns/#{inn.id}", {class: "index_inn_name"} %></th>
+        <td class="inn_td">
+          <ul>
+            <li class="index_inn_info"><%= "#{inn.price}円/人" %></li>
+            <li class="index_inn_info"><%= "エリア：#{inn.area}" %></li>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
