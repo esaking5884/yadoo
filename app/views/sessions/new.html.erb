@@ -1,28 +1,28 @@
 <h1>ログイン</h1>
 <table>
-    <%= form_with scope: :session, url: login_path, method: :post do |f| %>
-        <tr>
-            <th>
-                <%= f.label :email %>
-            </th>
-            <td>
-                <%= f.email_field :email, value: @email %>
-            </td>
-        </tr>
-        <tr>
-            <th>
-                <%= f.label :password %>
-            </th>
-            <td>
-                <%= f.password_field :password, value: @password %>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <%= f.submit "ログイン" %>
-            </td>
-        </tr>
-    <% end %>
+  <%= form_with scope: :session, url: login_path, method: :post do |f| %>
+    <tr>
+      <th>
+        <%= f.label :email %>
+      </th>
+      <td>
+        <%= f.email_field :email, value: @email %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <%= f.label :password %>
+      </th>
+      <td>
+        <%= f.password_field :password, value: @password %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <%= f.submit "ログイン" %>
+      </td>
+    </tr>
+  <% end %>
 </table>
 

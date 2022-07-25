@@ -1,57 +1,56 @@
 <h1>アカウントメニュー</h1>
-<div><img class="user_image" src="<%= "/user_images/#{@user.image_name}" %>"></div>
 <ul class ="yado_menu">
-  <li><%= link_to "宿を探す", inns_index_path %>% </li>
-  <li><%= link_to "宿を提供する", inns_new_path %></li>
+  <li><%= link_to "宿を探す", inns_path,{class: "yado_link"} %> </li>
+  <li><%= link_to "宿を提供する", new_inn_path,{class: "yado_link"} %></li>
 </ul>
-<h2>アカウント情報</h2>
-<table>
-  <tr>
-    <th>
-      <%= "氏名" %>
-    </th>
-    <td>
-      <%= @user.name %>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      <%= "アカウント名" %>
-    </th>
-    <td>
-      <%= @user.account_name %>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      <%= "メールアドレス" %>
-    </th>
-    <td>
-      <%= @user.email %>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      <%= "電話番号" %>
-    </th>
-    <td>
-      <%= @user.phone_number %>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      <%= "自己紹介" %>
-    </th>
-    <td>
-      <%= @user.introduction %>
-    </td>
-  </tr>
-</table>
+<div class="user_info_container">
+  <div><img class="user_image" src="<%= "/user_images/#{@user.image_name}" %>"></div>
+  <table>
+    <tr>
+      <th>
+        <%= "氏名" %>
+      </th>
+      <td>
+        <%= @user.name %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <%= "アカウント名" %>
+      </th>
+      <td>
+        <%= @user.account_name %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <%= "メールアドレス" %>
+      </th>
+      <td>
+        <%= @user.email %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <%= "電話番号" %>
+      </th>
+      <td>
+        <%= @user.phone_number %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <%= "自己紹介" %>
+      </th>
+      <td>
+        <%= @user.introduction %>
+      </td>
+    </tr>
+  </table>
+</div>
 <div>
-  <div>
-    <%= link_to "アカウント情報を編集", edit_user_path %>
-  <div>
-  <div>
-    <%= link_to "アカウント削除", user_path, method: :delete, data: {confirm: "本当に削除しますか？"} %>
-  </div>
+  <ul>
+    <li><%= link_to "アカウント情報を編集", edit_user_path %></li>
+    <li><%= link_to "アカウント削除", user_path, method: :delete, data: {confirm: "本当に削除しますか？"} %></li>
+  </ul>
 </div>

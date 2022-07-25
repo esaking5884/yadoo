@@ -35,7 +35,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     if params[:user][:image]
-      File.binwrite("public/user_images/#{@user.id}.jpg", params[:user][:image].read)
+      image_name = "#{@user.id}.jpg"
+      params[:id][:image_name] = image_name
+      File.binwrite("public/user_images/#{image_name}", params[:user][:image].read)
     end
     if @user.update(post_params)
       flash[:notice] = "アカウント情報を更新しました"
@@ -55,7 +57,4 @@ end
 private
   def post_params
     params.require(:user).permit(:name, :account_name, :email, :phone_number,  :introduction, :image_name, :password, :password_confirmation)
-  end
-  def update_post_params
-    params.require(:user).permit(:name, :account_name, :email, :phone_number,  :introduction, :password, :password_confirmation).merge(image_name: "#{@user.id}.jpg")
   end
