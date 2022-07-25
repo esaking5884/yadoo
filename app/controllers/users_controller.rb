@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user.image_name = "default.jpg"
     if @user.save
       flash[:notice] = "登録しました"
-      log_in_user(@user)
+      log_in(@user)
       redirect_to user_path
     else
       render "/users/new"

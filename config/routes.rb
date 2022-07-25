@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'inns/index'
   root 'home#top'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
