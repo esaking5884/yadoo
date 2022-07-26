@@ -9,7 +9,7 @@ class InnsController < ApplicationController
   end
 
   def create
-    @inn = Inn.new(post_inn_params)
+    @inn = Inn.new(inn_params)
     if @inn.save
       flash[:notice] = "宿を投稿しました"
       redirect_to user_path(session[:user_id])
@@ -35,7 +35,7 @@ class InnsController < ApplicationController
       params[:inn][:image_name] = image_name
       File.binwrite("public/inn_images/#{image_name}", params[:inn][:image].read)
     end
-    if @inn.update(post_inn_params)
+    if @inn.update(inn_params)
       flash[:notice] = "宿情報を更新しました"
       redirect_to inn_path(@inn.id)
     else
@@ -53,6 +53,6 @@ class InnsController < ApplicationController
 end
 
 private
-  def post_inn_params
+  def inn_params
     params.require(:inn).permit(:owner, :name, :price, :area, :address, :introduction, :image_name)
   end
