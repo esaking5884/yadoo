@@ -21,8 +21,8 @@
   </tr>
 </table>
 <ul>
+  <li><%= link_to "予約する", "/reservations/new" %></li>
   <% if correct_owner?(@inn) %>
-    <li><%= link_to "宿情報編集", edit_inn_path %></li>
     <li><%= link_to "宿削除", inn_path, {method: :delete, data:{confirm: "削除しますか？"}} %></li>
   <% end %>
   <li><%= link_to "宿検索に戻る", inns_path %></li>

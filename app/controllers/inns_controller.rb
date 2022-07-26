@@ -20,6 +20,7 @@ class InnsController < ApplicationController
 
   def show
     @inn = Inn.find_by(id: params[:id])
+    session[:inn_id] = params[:id]
   end
   
   def edit

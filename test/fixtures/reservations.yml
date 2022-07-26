@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  number_of_people: 1
+  inn_id: 1
+  check_in: 2022-07-26
+  check_out: 2022-07-26
+  total_fee: 1
+
+two:
+  user_id: 1
+  number_of_people: 1
+  inn_id: 1
+  check_in: 2022-07-26
+  check_out: 2022-07-26
+  total_fee: 1

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :inns, foreign_key: "owner"
+  has_many :reservations, foreign_key: "user_id"
   has_secure_password
   validates :name, {presence: true}
   validates :account_name, {presence: true}
