@@ -7,6 +7,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @reservations = @user.reservations.order(check_in: "DESC")
+    @own_inns = @user.inns
     unless current_user?(@user)
       redirect_to login_path
     end

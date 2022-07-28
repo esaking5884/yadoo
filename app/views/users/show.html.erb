@@ -54,3 +54,29 @@
     <li><%= link_to "アカウント削除", user_path, method: :delete, data: {confirm: "本当に削除しますか？"} %></li>
   </ul>
 </div>
+<h1>予約情報</h1>
+<table>
+  <tr>
+    <th>宿名</th>
+    <th>チェックイン日</th>
+    <th>チェックアウト日</th>
+    <th>人数</th>
+  </tr>
+  <% @reservations.each do |reservation| %>
+    <tr>
+      <td><%= reservation.inn.name %></td>
+      <td><%= reservation.check_in %></td>
+      <td><%= reservation.check_out %></td>
+      <td><%= reservation.number_of_people %></td>
+    </tr>
+  <% end %>
+</table>
+<h1>My 宿</h1>
+<table>
+  <% @own_inns.each do |own_inn| %>
+    <tr>
+      <td><%= own_inn.name %></td>
+    </tr>
+  <% end %>
+</table>
+      
