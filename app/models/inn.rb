@@ -1,5 +1,5 @@
 class Inn < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, dependent: destroy
   has_many :reservations, foreign_key: "inn_id"
   validates :name, {presence: true}
   validates :area, {presence: true}
