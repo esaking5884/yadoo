@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  root 'home#top'
+  root "home#top"
   post "reservations/confirm" => "reservations#confirm"
   post "reservations/new" => "reservations#new"
-  get    '/login',   to: 'sessions#new'
-  post   '/login',   to: 'sessions#create'
-  delete '/logout',  to: 'sessions#destroy'
-  get '/top' => 'home#top'
+  get    "/login",   to: "sessions#new"
+  post   "/login",   to: "sessions#create"
+  delete "/logout",  to: "sessions#destroy"
+  get "/top" => "home#top"
+  get "search" => "inns#search"
   resources :users
   resources :home
   resources :inns

@@ -3,13 +3,17 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 ul{
-    list-style: none;
+  list-style: none;
 }
 
 a{
-    text-decoration: none;
-    color: #000;
-    margin-left: 20px;
+  text-decoration: none;
+  color: #000;
+  margin-left: 20px;
+}
+
+li{
+  margin-bottom: 20px;
 }
 
 .header{
@@ -53,7 +57,7 @@ a{
   justify-content: center;
 }
 
-.yado_link{
+.button{
   padding: 20px;
   border-radius: 25px;
   background-color: #000;
@@ -80,4 +84,21 @@ table tr:nth-child(odd){
 
 table th{
   width: 300px;
+}
+
+.account_menu{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5%;
+}
+
+.button_container{
+  margin-left: 5%;
+}
+
+.owner_menu{
+  text-align: left;
+  font-size: 48px;
+  margin-left: 10%;
+  font-weight: bold;
 }

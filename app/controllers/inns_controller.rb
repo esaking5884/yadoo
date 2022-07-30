@@ -51,6 +51,15 @@ class InnsController < ApplicationController
     flash[:notice] = "削除しました"
     redirect_to inns_path
   end
+
+  def search
+    if params[:word] == "" || params[:word].nil?
+      @inns = Inn.all
+    else
+      @inns = Inn.where("(name LIKE ? OR introduction LIKE ?) AND area LIKE ?", "%#{params[:word]}%", "%#{params[:word]}%", "#{params[:area]}")
+    end
+    render "index"
+  end
 end
 
 private
