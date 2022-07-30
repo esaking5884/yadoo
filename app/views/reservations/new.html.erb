@@ -8,6 +8,10 @@
   <%= form_with model: @reservation, url: "/reservations/confirm" do |f| %>
     <table>
       <tr>
+        <th>宿名</th>
+        <td><%= @inn.name %></td>
+      </tr>
+      <tr>
         <th><%= f.label :name, "代表者名" %></th>
         <td><%= f.text_field :name, value: @reservation.name %></td>
       </tr>
@@ -26,7 +30,7 @@
       <tr>
         <td></td>
         <%= f.hidden_field :user_id, value: session[:user_id] %>
-        <%= f.hidden_field :inn_id, value: session[:inn_id] %>
+        <%= f.hidden_field :inn_id, value: @inn.id %>
         <td><%= f.submit "確認" %></td>
       </tr>
     </table>

@@ -1,6 +1,6 @@
 <h1>ログイン</h1>
-<table>
-  <%= form_with scope: :session, url: login_path, method: :post do |f| %>
+<%= form_with scope: :session, url: login_path, method: :post do |f| %>
+  <table>
     <tr>
       <th>
         <%= f.label :email %>
@@ -23,6 +23,6 @@
         <%= f.submit "ログイン" %>
       </td>
     </tr>
-  <% end %>
-</table>
+  </table>
+<% end %>
 

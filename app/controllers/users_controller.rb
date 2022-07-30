@@ -24,9 +24,9 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "登録しました"
       log_in(@user)
-      redirect_to user_path
+      redirect_to user_path(@user.id)
     else
-      render "/users/new"
+      render "new"
     end
   end
 
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find_by(id: params[:id])
-    @user.delete
+    @user.destroy
     log_out
   end
 end

@@ -10,6 +10,7 @@ class InnsController < ApplicationController
 
   def create
     @inn = Inn.new(inn_params)
+    @user = User.find(session[:user_id])
     if @inn.save
       flash[:notice] = "宿を投稿しました"
       redirect_to user_path(session[:user_id])
@@ -19,17 +20,16 @@ class InnsController < ApplicationController
   end
 
   def show
-    @inn = Inn.find_by(id: params[:id])
-    session[:inn_id] = params[:id]
+    @inn = Inn.find(params[:id])
   end
   
   def edit
-    @inn = Inn.find_by(id: params[:id])
+    @inn = Inn.find(params[:id])
     kick_wrong_owner(@inn)
   end
   
   def update
-    @inn = Inn.find_by(id: params[:id])
+    @inn = Inn.find(params[:id])
     kick_wrong_owner(@inn)
     if params[:inn][:image]
       image_name = "#{@inn.id}.jpg"
@@ -47,7 +47,7 @@ class InnsController < ApplicationController
   def destroy
     @inn = Inn.find_by(id: params[:id])
     kick_wrong_owner(@inn)
-    @inn.delete
+    @inn.destroy
     flash[:notice] = "削除しました"
     redirect_to inns_path
   end

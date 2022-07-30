@@ -17,3 +17,8 @@ ja:
     area: エリア
     address: 住所
     introduction: 詳細
+   reservation:
+    name: 代表者名
+    number_of_people: 人数
+    check_in: チェックイン日
+    check_out: チェクアウト日

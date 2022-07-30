@@ -21,13 +21,13 @@
   </tr>
 </table>
 <ul class="button_container">
-  <li><%= link_to "予約する", "/reservations/new", {class: "button"} %></li>
+  <li><%= link_to "予約する", new_reservation_path(inn_id: params[:id]), {class: "button"} %></li>
   <li><%= link_to "宿検索に戻る", inns_path, {class: "button"} %></li>
 </ul>
   <% if correct_owner?(@inn) %>
     <p class="owner_menu">オーナーメニュー</p>
     <ul class="button_container">
-      <li><%= link_to "宿編集", edit_inn_path, {class: "button"} %></li>
+      <li><%= link_to "宿編集", edit_inn_path(inn_id: params[:id]), {class: "button"} %></li>
       <li><%= link_to "宿削除", inn_path, {method: :delete, data:{confirm: "削除しますか？"}, class: "button"} %></li>
     </ul>
   <% end %>
