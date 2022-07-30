@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "home#top"
   post "reservations/confirm" => "reservations#confirm"
+  patch "reservations/edit_confirm" => "reservations#edit_confirm"
   post "reservations/new" => "reservations#new"
   get    "/login",   to: "sessions#new"
   post   "/login",   to: "sessions#create"

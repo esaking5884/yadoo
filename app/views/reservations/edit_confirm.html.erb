@@ -33,6 +33,7 @@
       <%= f.hidden_field :check_out, value: @reservation.check_out %>
       <%= f.hidden_field :total_fee, value: @total_fee %>
       <%= f.hidden_field :inn_id, value: @reservation.inn_id %>
+      <%= f.hidden_field :id, value: @reservation.id %>
       <td></td>
       <td><%= f.submit "    完了    " %><%= f.submit "修正", name: :back %></td>
     <% end %>
