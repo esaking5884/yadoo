@@ -16,4 +16,11 @@ class ApplicationController < ActionController::Base
       redirect_to inn_path(params[:id])
     end
   end
+  
+  def kick_wrong_customer(reservation)
+    unless correct_customer?(reservation)
+      flash[:notice] = "権限がありません"
+      redirect_to user_path(session[:user_id])
+    end
+  end
 end
