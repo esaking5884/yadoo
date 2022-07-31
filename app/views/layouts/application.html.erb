@@ -15,7 +15,6 @@
       <ul class="header_links">
         <% if logged_in? %>
           <li><%= link_to "ようこそ#{@current_user.account_name}さん", "/users/#{@current_user.id}", {class: "header_link"} %></li>
-          <li><%= link_to "ユーザー一覧", :users, {class: "header_link"} %></li>
           <li><%= link_to "ログアウト", logout_path, {method: :delete, class: "header_link"} %></li>
         <% else %>
           <li><%= link_to "ユーザー登録", :new_user, {class: "header_link"} %></li>
