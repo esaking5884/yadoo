@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    session[:previous_url] = request.referer
   end
 
   def create
@@ -7,7 +8,11 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       flash[:notice] = "ログインしました"
       log_in(user)
-      redirect_to user_path(user)
+      if session[:previous_url]
+        redirect_to session[:previous_url]
+      else
+        redirect_to user_path(user)
+      end
     else
       @email = params[:session][:email]
       @password = params[:session][:password]
