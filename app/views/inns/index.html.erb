@@ -2,7 +2,7 @@
 <div class="serach_form">
   <%= form_with url: search_path, local: true, method: :get do |f| %>
     <p><%= f.text_field :word, value: params[:word] %></p>
-    <p><%= f.select :area, options_from_collection_for_select( Inn.all, :area, :area, selected: params[:area]) %></p>
+    <p><%= f.select :area, options_for_select(@options, @area), {include_blank: "指定なし"} %></p>
     <p><%= f.submit "検索" %></p>
   <% end %>
 </div>
