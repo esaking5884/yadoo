@@ -56,12 +56,7 @@ class InnsController < ApplicationController
   
   def search
     @options = Inn.pluck(:area)
-    @area = params[:area]
-    if params[:area] == ""
-      @inns = Inn.where("name LIKE ? OR introduction LIKE ?", "%#{params[:word]}%", "%#{params[:word]}%")
-    else
-      @inns = Inn.where("(name LIKE ? OR introduction LIKE ?) AND area LIKE ?", "%#{params[:word]}%", "%#{params[:word]}%", "#{params[:area]}")
-    end
+    @inns = Inn.where("name LIKE ? OR introduction LIKE ?", "%#{params[:word]}%", "%#{params[:word]}%").where("area LIKE ?", "#{params[:area]}%")
     render "index"
   end
   
