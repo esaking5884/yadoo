@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   delete "/logout",  to: "sessions#destroy"
   get "/top" => "home#top"
   get "search" => "inns#search"
-  get "/inns/:id/new_image" => "inns#new_image"
   post "inns/create_image" => "inns#create_image"
+  get "/inns/:id/edit_image" => "inns#edit_image"
+  post "/inns/:id/edit_image_order" => "inns#edit_image_order"
   delete "inns/:id/destroy_image" => "inns#destroy_image"
   resources :users
   resources :home

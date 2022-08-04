@@ -40,8 +40,7 @@ class InnsController < ApplicationController
     end
     if @inn.update(inn_params)
       flash[:notice] = "宿情報を更新しました"
-      #redirect_to inn_path(@inn.id)
-      redirect_to "/inns/#{params[:id]}/new_image"
+      redirect_to inn_path(@inn.id)
     else
       render "edit"
     end
@@ -54,7 +53,7 @@ class InnsController < ApplicationController
     flash[:notice] = "削除しました"
     redirect_to inns_path
   end
-
+  
   def search
     @options = Inn.pluck(:area)
     @area = params[:area]
@@ -65,28 +64,29 @@ class InnsController < ApplicationController
     end
     render "index"
   end
-
-  def new_image
+  
+  def edit_image
     @inn_image = InnImage.new
     t = Time.now.strftime("%Y%m%d%H%M%S")
     @image_name = "#{t}.jpg"
     @inn = Inn.find(params[:id])
+    @inn_images = @inn.inn_images
   end
-
+  
   def create_image
     if params[:inn_image][:image]
       File.binwrite("public/inn_sub_images/#{params[:inn_image][:image_name]}", params[:inn_image][:image].read)
     else
       flash[:notice] = "ファイルを選択してください"
-      render "new_image"
+      render "edit_image"
     end
     @inn_image = InnImage.new(inn_image_params)
     if @inn_image.save
       flash[:notice] = "画像を追加しました"
-      redirect_to "/inns/#{@inn_image.inn_id}/new_image"
+      redirect_to "/inns/#{@inn_image.inn_id}/edit_image"
     else
       flash[:notice] = "登録に失敗しました"
-      render "new_image"
+      render "edit_image"
     end
   end
 
@@ -94,7 +94,17 @@ class InnsController < ApplicationController
     @inn_image = InnImage.find(params[:id])
     @inn_image.destroy
     flash[:notice] = "削除しました"
-    redirect_to "/inns/#{@inn_image.inn_id}/new_image"
+    redirect_to "/inns/#{@inn_image.inn_id}/edit_image"
+  end
+
+  def edit_image_order
+    @inn_image = InnImage.find(params[:id])
+    if @inn_image.update(inn_image_params)
+      flash[:notice] = "表示順序を更新しました"
+      redirect_to "/inns/#{@inn_image.inn_id}/edit_image"
+    else
+      render "edit_image"
+    end
   end
 end
 

@@ -11,9 +11,20 @@
 </div>
 <h1>登録済みイメージ</h1>
 <table>
-  <% @inn.inn_images.each do |inn_image| %>
+  <tr>
+    <th>表示順序</th>
+    <th>イメージ</th>
+    <th>表示順序更新</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @inn.inn_images.order(order: "ASC").each do |inn_image| %>
     <tr>
+      <td><%= inn_image.order %></td>
       <td><%= image_tag "/inn_sub_images/#{inn_image.image_name}", :size => '300x200' %></td>
+      <%= form_with model: inn_image , url: "/inns/#{inn_image.id}/edit_image_order", method: :post, local: true do |f| %>
+        <td><%= f.number_field :order %><%= f.submit "更新" %></td>
+      <% end %>
       <td><%= link_to "削除", "/inns/#{inn_image.id}/destroy_image", {method: :delete, data:{confirm: "削除しますか？"}, class: "button"} %></td>
     </tr>
   <% end %>
