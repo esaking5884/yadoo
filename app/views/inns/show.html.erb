@@ -1,6 +1,11 @@
 <h1><%= @inn.name %></h1>
-<div class="inn_image_container">
-  <img class="inn_image" src="<%= "/inn_images/#{@inn.image_name}" %>">
+<div class="slider_container">
+  <div class="slider">
+    <%= image_tag "/inn_images/#{@inn.image_name}", {class: "image_in_slider"} %>
+    <% @inn.inn_images.each do |inn_image| %>
+      <%= image_tag "/inn_sub_images/#{inn_image.image_name}", {class: "image_in_slider"} %>
+    <% end %>
+  </div>
 </div>
 <table>
   <tr>

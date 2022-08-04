@@ -1,0 +1,21 @@
+<h1>宿イメージ登録</h1>
+<%= form_with model: @inn_image, url: "/inns/create_image", local: true do |f| %>
+  <p><%= f.file_field :image %></p>
+  <%= f.hidden_field :image_name, value: @image_name %>
+  <%= f.hidden_field :inn_id, value: params[:id] %>
+  <%= f.hidden_field :order, value: Inn.find(params[:id]).inn_images.size + 1 %>
+  <p><%= f.submit "登録" %></p>
+<% end %>
+<div>
+  <%= link_to "宿ページへ戻る", inn_path(params[:id]), {class: "button"}%>
+</div>
+<h1>登録済みイメージ</h1>
+<table>
+  <% @inn.inn_images.each do |inn_image| %>
+    <tr>
+      <td><%= image_tag "/inn_sub_images/#{inn_image.image_name}", :size => '300x200' %></td>
+      <td><%= link_to "削除", "/inns/#{inn_image.id}/destroy_image", {method: :delete, data:{confirm: "削除しますか？"}, class: "button"} %></td>
+    </tr>
+  <% end %>
+</table>
+

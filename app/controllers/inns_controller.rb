@@ -6,11 +6,13 @@ class InnsController < ApplicationController
   def new
     @inn = Inn.new
     @user = User.find_by(id: session[:user_id])
+    @inn_image = InnImage.new
   end
 
   def create
     @inn = Inn.new(inn_params)
     @user = User.find(session[:user_id])
+    @sub_image = InnImage.new(inn_image_params)
     if @inn.save
       flash[:notice] = "宿を投稿しました"
       redirect_to user_path(session[:user_id])
@@ -38,7 +40,8 @@ class InnsController < ApplicationController
     end
     if @inn.update(inn_params)
       flash[:notice] = "宿情報を更新しました"
-      redirect_to inn_path(@inn.id)
+      #redirect_to inn_path(@inn.id)
+      redirect_to "/inns/#{params[:id]}/new_image"
     else
       render "edit"
     end
@@ -62,9 +65,44 @@ class InnsController < ApplicationController
     end
     render "index"
   end
+
+  def new_image
+    @inn_image = InnImage.new
+    t = Time.now.strftime("%Y%m%d%H%M%S")
+    @image_name = "#{t}.jpg"
+    @inn = Inn.find(params[:id])
+  end
+
+  def create_image
+    if params[:inn_image][:image]
+      File.binwrite("public/inn_sub_images/#{params[:inn_image][:image_name]}", params[:inn_image][:image].read)
+    else
+      flash[:notice] = "ファイルを選択してください"
+      render "new_image"
+    end
+    @inn_image = InnImage.new(inn_image_params)
+    if @inn_image.save
+      flash[:notice] = "画像を追加しました"
+      redirect_to "/inns/#{@inn_image.inn_id}/new_image"
+    else
+      flash[:notice] = "登録に失敗しました"
+      render "new_image"
+    end
+  end
+
+  def destroy_image
+    @inn_image = InnImage.find(params[:id])
+    @inn_image.destroy
+    flash[:notice] = "削除しました"
+    redirect_to "/inns/#{@inn_image.inn_id}/new_image"
+  end
 end
 
 private
   def inn_params
     params.require(:inn).permit(:owner, :name, :price, :area, :address, :introduction, :image_name)
+  end
+
+  def inn_image_params
+    params.require(:inn_image).permit(:inn_id, :image_name, :order)
   end

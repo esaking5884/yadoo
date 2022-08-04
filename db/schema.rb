@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_26_145827) do
+ActiveRecord::Schema.define(version: 2022_08_02_104709) do
+
+  create_table "inn_images", force: :cascade do |t|
+    t.integer "inn_id"
+    t.string "image_name"
+    t.integer "order"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "inns", force: :cascade do |t|
     t.integer "owner"

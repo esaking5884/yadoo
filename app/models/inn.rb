@@ -1,6 +1,7 @@
 class Inn < ApplicationRecord
   belongs_to :user, foreign_key: "owner"
   has_many :reservations, dependent: :destroy
+  has_many :inn_images, dependent: :destroy
   validates :name, {presence: true}
   validates :area, {presence: true}
   validates :address, {presence: true}
