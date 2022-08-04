@@ -71,6 +71,7 @@ class InnsController < ApplicationController
     @image_name = "#{t}.jpg"
     @inn = Inn.find(params[:id])
     @inn_images = @inn.inn_images
+    kick_wrong_owner(@inn)
   end
   
   def create_image
