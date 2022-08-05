@@ -41,11 +41,16 @@ class UsersController < ApplicationController
       params[:user][:image_name] = image_name
       File.binwrite("public/user_images/#{image_name}", params[:user][:image].read)
     end
-    if @user.update(post_params)
-      flash[:notice] = "アカウント情報を更新しました"
-      redirect_to user_path
+    if @user.authenticate(params[:user][:corrent_password])
+      if @user.update(post_params)
+        flash[:notice] = "アカウント情報を更新しました"
+        redirect_to user_path(params[:id])
+      else
+        render "edit"
+      end
     else
-      render "/users/#{@user.id}/edit"
+        flash[:notice] = "現在のパスワードが一致しません"
+        render "edit"
     end
   end
 

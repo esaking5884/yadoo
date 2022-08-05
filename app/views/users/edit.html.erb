@@ -43,7 +43,15 @@
     </tr>
     <tr>
       <th>
-        <%= f.label :password, "パスワード" %>
+        <%= f.label :corrent_password, "現在のパスワード" %>
+      </th>
+      <td>
+        <%= f.password_field :corrent_password %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <%= f.label :password, "新しいパスワード" %>
       </th>
       <td>
         <%= f.password_field :password %>
