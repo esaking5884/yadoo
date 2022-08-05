@@ -12,7 +12,6 @@ class InnsController < ApplicationController
   def create
     @inn = Inn.new(inn_params)
     @user = User.find(session[:user_id])
-    @sub_image = InnImage.new(inn_image_params)
     if @inn.save
       flash[:notice] = "宿を投稿しました"
       redirect_to user_path(session[:user_id])
