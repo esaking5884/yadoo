@@ -1,0 +1,28 @@
+<h1>ログイン</h1>
+<%= form_with scope: :session, url: login_path, method: :post do |f| %>
+  <table>
+    <tr>
+      <th>
+        <%= f.label :email %>
+      </th>
+      <td>
+        <%= f.email_field :email, value: @email %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <%= f.label :password %>
+      </th>
+      <td>
+        <%= f.password_field :password, value: @password %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <%= f.submit "ログイン" %>
+      </td>
+    </tr>
+  </table>
+<% end %>
+

@@ -1,0 +1,41 @@
+<h1>予約情報確認</h1>
+<table>
+  <tr>
+    <th>宿名</th>
+    <td><%= @reservation.inn.name %></td>
+  </tr>
+  <tr>
+    <th><%= "代表者名" %></th>
+    <td><%= @reservation.name %></td>
+  </tr>
+  <tr>
+    <th><%= "人数" %></th>
+    <td><%= @reservation.number_of_people %></td>
+  </tr>
+  <tr>
+    <th><%= "チェックイン" %></th>
+    <td><%= @reservation.check_in %></td>
+  </tr>
+  <tr>
+    <th><%= "チェックアウト" %></th>
+    <td><%= @reservation.check_out %></td>
+  </tr>
+  <tr>
+    <th><%= "合計金額" %></th>
+    <td><%= @total_fee %></td>
+  </tr>
+  <tr>
+    <%= form_with model: @reservation do |f| %>
+      <%= f.hidden_field :user_id, value: @reservation.user_id %>
+      <%= f.hidden_field :name, value: @reservation.name %>
+      <%= f.hidden_field :number_of_people, value: @reservation.number_of_people %>
+      <%= f.hidden_field :check_in, value: @reservation.check_in %>
+      <%= f.hidden_field :check_out, value: @reservation.check_out %>
+      <%= f.hidden_field :total_fee, value: @total_fee %>
+      <%= f.hidden_field :inn_id, value: @reservation.inn_id %>
+      <%= f.hidden_field :id, value: @reservation.id %>
+      <td></td>
+      <td><%= f.submit "    完了    " %><%= f.submit "修正", name: :back %></td>
+    <% end %>
+  </tr>
+</table>

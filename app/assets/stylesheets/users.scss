@@ -1,0 +1,41 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.user_image{
+    width:180px;
+    height:180px;
+    border-radius: 50%;
+    border: double;
+}
+
+.user_info_container{
+  display: flex;
+}
+
+.account_info_menu{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.yado_menu{
+  display: flex;
+  justify-content: center;
+}
+
+.account_menu{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5%;
+}
+
+.button_container{
+  margin-left: 5%;
+}
+
+.owner_menu{
+  text-align: left;
+  font-size: 48px;
+  margin-left: 10%;
+  font-weight: bold;
+}

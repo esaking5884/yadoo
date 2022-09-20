@@ -1,0 +1,12 @@
+<h1>宿探し、Yadoo</h1>
+<table>
+  <tr>
+    <% if !logged_in?%>
+      <td>
+        <%= link_to "会員登録", new_user_path, {class: "button"} %>
+      </td>
+    <% end %>
+    <td>
+      <%= link_to "宿検索", search_path, {class: "button"} %>
+    </td>
+</table>

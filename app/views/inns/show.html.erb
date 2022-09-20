@@ -1,0 +1,39 @@
+<h1><%= @inn.name %></h1>
+<div class="slider_container">
+  <div class="slider">
+    <%= image_tag "/inn_images/#{@inn.image_name}", {class: "image_in_slider"} %>
+    <% @inn.inn_images.order(order: "ASC").each do |inn_image| %>
+      <%= image_tag "/inn_sub_images/#{inn_image.image_name}", {class: "image_in_slider"} %>
+    <% end %>
+  </div>
+</div>
+<table>
+  <tr>
+    <th>詳細</th>
+    <td><%= @inn.introduction %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @inn.address %></td>
+  </tr>
+  <tr>
+    <th>料金</th>
+    <td><%= @inn.price %></td>
+  </tr>
+  <tr>
+    <th>貸主</th>
+    <td><%= @inn.user.account_name %></td>
+  </tr>
+</table>
+<ul class="button_container">
+  <li><%= link_to "予約する", new_reservation_path(inn_id: params[:id]), {class: "button"} %></li>
+  <li><%= link_to "宿検索に戻る", search_path, {class: "button"} %></li>
+</ul>
+  <% if correct_owner?(@inn) %>
+    <p class="owner_menu">オーナーメニュー</p>
+    <ul class="button_container">
+      <li><%= link_to "宿情報編集", edit_inn_path(inn_id: params[:id]), {class: "button"} %></li>
+      <li><%= link_to "宿写真編集", "/inns/#{params[:id]}/edit_image", {class: "button"} %></li>
+      <li><%= link_to "宿削除", inn_path, {method: :delete, data:{confirm: "削除しますか？"}, class: "button"} %></li>
+    </ul>
+  <% end %>

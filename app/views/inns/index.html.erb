@@ -1,0 +1,28 @@
+<h1>宿検索</h1>
+<div class="serach_form">
+  <%= form_with url: search_path, local: true, method: :get do |f| %>
+    <p><%= f.text_field :word, value: params[:word] %></p>
+    <p><%= f.select :area, options_for_select(@options, @area), {include_blank: "指定なし"} %></p>
+    <p><%= f.submit "検索" %></p>
+  <% end %>
+</div>
+<div>
+  <% if @inns == [] %>
+    <h2>条件に合う宿が見つかりません</h2>
+  <% else %>
+    <table>
+      <% @inns.each do |inn| %>
+        <tr>
+          <th class="inn_th"><%= link_to "#{inn.name}", "/inns/#{inn.id}", {class: "index_inn_name"} %></th>
+          <td class="inn_td">
+            <ul>
+              <li class="index_inn_info"><%= "#{inn.price}円/人" %></li>
+              <li class="index_inn_info"><%= "エリア：#{inn.area}" %></li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>
+

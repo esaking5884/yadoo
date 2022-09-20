@@ -1,0 +1,38 @@
+<h1>宿登録</h1>
+<% @inn.errors.full_messages.each do |message| %>
+  <p class="error_message">
+    <%= message %>
+  </p>
+<% end %>
+<div class="inn_form">
+  <%= form_with model: @inn do |f| %>
+    <%= f.hidden_field :owner, value: @user.id %>
+    <%= f.hidden_field :image_name, value: "default_inn_image.jpg" %>
+    <table>
+      <tr>
+        <th><%= f.label :name, "宿名" %></th>
+        <td><%= f.text_field :name, value: @inn.name %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :area, "エリア" %></th>
+        <td><%= f.text_field :area, value: @inn.area %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :address, "住所" %></th>
+        <td><%= f.text_field :address, value: @inn.address %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :price, "値段" %></th>
+        <td><%= f.text_field :price, value: @inn.price %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :introduction, "詳細" %></th>
+        <td><%= f.text_area :introduction, value: @inn.introduction %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit "登録する" %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>

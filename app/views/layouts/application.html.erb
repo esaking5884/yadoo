@@ -5,12 +5,42 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
 
   <body>
+    <div class="header">
+      <%= link_to "Yadoo", '/top', {class: "logo"} %>
+      <ul class="header_links">
+        <% if logged_in? %>
+          <li><%= link_to "ようこそ#{@current_user.account_name}さん", "/users/#{@current_user.id}", {class: "header_link"} %></li>
+          <li><%= link_to "ログアウト", logout_path, {method: :delete, class: "header_link"} %></li>
+        <% else %>
+          <li><%= link_to "ユーザー登録", :new_user, {class: "header_link"} %></li>
+          <li><%= link_to "ログイン", login_path, {class: "header_link"} %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="message">
+      <% if flash[:notice] %>
+        <div class="flash_message">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+    </div>
     <%= yield %>
+    <div class="footer">
+      <ul>
+        <% if logged_in? %>
+          <li>ログイン中： <%= @current_user.account_name %></li>
+        <% else %>
+          <li>not logged in</li>
+        <% end %>
+      </ul>
+    </div>
   </body>
 </html>

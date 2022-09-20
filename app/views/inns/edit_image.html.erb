@@ -1,0 +1,36 @@
+<h1>宿イメージ登録</h1>
+<%= form_with model: @inn_image, url: "/inns/create_image", local: true do |f| %>
+  <p><%= f.file_field :image %></p>
+  <%= f.hidden_field :image_name, value: @image_name %>
+  <%= f.hidden_field :inn_id, value: params[:id] %>
+  <% if @inn_images.size == 0 %>
+    <%= f.hidden_field :order, value: 1 %>
+  <% else %>
+    <%= f.hidden_field :order, value: @inn_images.maximum(:order) + 1 %>
+  <% end %>
+  <p><%= f.submit "登録" %></p>
+<% end %>
+<div>
+  <%= link_to "宿ページへ戻る", inn_path(params[:id]), {class: "button"}%>
+</div>
+<h1>登録済みイメージ</h1>
+<table>
+  <tr>
+    <th>表示順序</th>
+    <th>イメージ</th>
+    <th>表示順序更新</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @inn_images.order(order: "ASC").each do |inn_image| %>
+    <tr>
+      <td><%= inn_image.order %></td>
+      <td><%= image_tag "/inn_sub_images/#{inn_image.image_name}", :size => '300x200' %></td>
+      <%= form_with model: inn_image , url: "/inns/#{inn_image.id}/edit_image_order", method: :post, local: true do |f| %>
+        <td><%= f.number_field :order %><%= f.submit "更新" %></td>
+      <% end %>
+      <td><%= link_to "削除", "/inns/#{inn_image.id}/destroy_image", {method: :delete, data:{confirm: "削除しますか？"}, class: "button"} %></td>
+    </tr>
+  <% end %>
+</table>
+
